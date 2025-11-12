@@ -26,6 +26,7 @@ struct DailyWeatherView: View {
                             
                             //天気アイコン画像
                             AsyncImageView(urlStr: "https:\(forecastsDay.day.condition.icon)")
+                                .scaledToFit()
                             
                             //天気の説明
                             Text(forecastsDay.day.condition.text)
@@ -56,11 +57,13 @@ struct DailyWeatherView: View {
                             }
                             
                             //月の満ち欠け
-                            Image(forecastsDay.day.moonPhase.icon)
-                            
-                            
-                            .font(.subheadline)
+                            Image(forecastsDay.astro.moonPhase)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
+                
                         }
+                        
                         .padding()
                         .frame(width: ScreenInfo.width / 2, height: ScreenInfo.height / 3)
                         .background(.yellow.opacity(0.2))
@@ -100,6 +103,10 @@ struct DailyWeatherView: View {
                             }
                             
                             //月の満ち欠け
+                            Image("New Moon")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 50, height: 50)
                             
                         }
                         .padding()
@@ -113,6 +120,8 @@ struct DailyWeatherView: View {
         }
     }
 }
+
+
 
 #Preview {
     //    DailyWeatherView()
